@@ -101,7 +101,7 @@ update msg model =
                         )
                         model.plants
             in
-            ( { model | plants = newPlants }, Cmd.none )
+                ( { model | plants = newPlants }, Cmd.none )
 
         RemoveFromUserPlant plantId ->
             let
@@ -115,7 +115,7 @@ update msg model =
                         )
                         model.plants
             in
-            ( { model | plants = newPlants }, Cmd.none )
+                ( { model | plants = newPlants }, Cmd.none )
 
         -- TimeNow date ->
         --     ( model, Cmd.none )
@@ -131,7 +131,7 @@ update msg model =
 
                 -- Int
             in
-            ( { model | date = newMonth }, Cmd.none )
+                ( { model | date = newMonth }, Cmd.none )
 
 
 
@@ -146,36 +146,30 @@ view : Model -> Html Msg
 view model =
     case model.route of
         SplashScreen ->
-            body [ myContainer ]
-                [ div
-                    [ class "test-class test-class2" ]
+            body [ class "splashScreenBody" ]
+                [ div []
                     [ text "Splash Screen"
                     , br [] []
                     , button [ onClick (ChangeRoute Home) ] [ text "here I want 2s dalay and auto go Home" ]
                     , button [] [ text (toString model.date) ]
-                    , ul [ myNav ]
-                        [ button [ class "test-class2", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
-                        , button [ onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
-                        , button [ onClick (ChangeRoute About) ] [ text "About" ]
-                        ]
                     ]
                 ]
 
         Home ->
-            body [ myContainer ]
+            body [ class "homeScreenBody" ]
                 [ div []
                     [ text "Home Screen"
                     , br [] []
-                    , button [ onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
+                    , button [ class "homeAllPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
                     , br [] []
-                    , button [ onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
+                    , button [ class "homeUserPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
                     , br [] []
-                    , button [ onClick (ChangeRoute About) ] [ text "About" ]
+                    , button [ class "homeAboutButton", onClick (ChangeRoute About) ] [ text "About" ]
                     ]
                 ]
 
         AllPlants ->
-            body [ myContainer ]
+            body [ class "allPlantsScreenBody" ]
                 [ div []
                     [ text "Plants Screen"
                     , br [] []
@@ -185,7 +179,7 @@ view model =
                             (\plant ->
                                 div []
                                     [ br [] []
-                                    , button [ onClick (ChangeRoute (ThePlant plant.id_)) ]
+                                    , button [ class "allPlantsPlantButton", onClick (ChangeRoute (ThePlant plant.id_)) ]
                                         [ text plant.name ]
                                     , br [] []
                                     ]
@@ -194,7 +188,11 @@ view model =
                         )
                     , br [] []
                     , br [] []
-                    , button [ onClick (ChangeRoute Home) ] [ text "Home" ]
+                    , ul [ class "navBar" ]
+                        [ button [ class "allPlantsAllPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
+                        , button [ class "allPlantsrPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
+                        , button [ class "allPlantsAboutButton", onClick (ChangeRoute About) ] [ text "About" ]
+                        ]
                     ]
                 ]
 
@@ -203,21 +201,25 @@ view model =
                 userFavPlants =
                     List.filter (\plant -> plant.userFav) model.plants
             in
-            body [ myContainer ]
-                [ div []
-                    [ text "User Plants Screen"
-                    , br [] []
-                    , div
-                        []
-                        (List.map
-                            (\plant ->
-                                button [ onClick (ChangeRoute (ThePlant plant.id_)) ] [ text plant.name ]
+                body [ class "userPlantsScreenBody" ]
+                    [ div []
+                        [ text "User Plants Screen"
+                        , br [] []
+                        , div
+                            []
+                            (List.map
+                                (\plant ->
+                                    button [ class "userPlantsPlantButton", onClick (ChangeRoute (ThePlant plant.id_)) ] [ text plant.name ]
+                                )
+                                userFavPlants
                             )
-                            userFavPlants
-                        )
-                    , button [ onClick (ChangeRoute Home) ] [ text "Home" ]
+                        , ul [ class "navBar" ]
+                            [ button [ class "userPlantsPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
+                            , button [ class "userPlantsPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
+                            , button [ class "userPlantsAboutButton", onClick (ChangeRoute About) ] [ text "About" ]
+                            ]
+                        ]
                     ]
-                ]
 
         ThePlant plantId ->
             let
@@ -237,28 +239,36 @@ view model =
                             -- onClick check if its in User plants
                             button [ onClick (AddToUserPlant thePlant.id_) ] [ text "Add To User Plants" ]
             in
-            body [ myContainer ]
-                [ div []
-                    [ text "The Plant"
-                    , br [] []
-                    , br [] []
-                    , text thePlant.name
-                    , addRemoveButton
-                    , br [] []
-                    , br [] []
-                    , text "Plant Description"
-                    , br [] []
-                    , text thePlant.description
-                    , br [] []
-                    , button [ onClick (ChangeRoute Home) ] [ text "Home" ]
+                body [ class "thePlantScreenBody" ]
+                    [ div []
+                        [ text "The Plant"
+                        , br [] []
+                        , br [] []
+                        , text thePlant.name
+                        , addRemoveButton
+                        , br [] []
+                        , br [] []
+                        , text "Plant Description"
+                        , br [] []
+                        , text thePlant.description
+                        , br [] []
+                        , ul [ class "navBar" ]
+                            [ button [ class "thePlantAllPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
+                            , button [ class "thePlanPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
+                            , button [ class "thePlanButton", onClick (ChangeRoute About) ] [ text "About" ]
+                            ]
+                        ]
                     ]
-                ]
 
         About ->
-            body [ myContainer ]
+            body [ class "AboutScreenBody" ]
                 [ div []
                     [ text "About Screen"
                     , br [] []
-                    , button [ onClick (ChangeRoute Home) ] [ text "Home" ]
+                    , ul [ class "navBar" ]
+                        [ button [ class "aboutAllPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
+                        , button [ class "aboutUserPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
+                        , button [ class "aboutAboutButton", onClick (ChangeRoute About) ] [ text "About" ]
+                        ]
                     ]
                 ]

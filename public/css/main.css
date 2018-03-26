@@ -15,6 +15,73 @@ body {
   background-color: #eee;
 }
 
+{-
+[ class "navBar" ]
+
+[ class "splashScreenBody" ]
+
+[ class "homeScreenBody" ]
+  [ class "homeAllPlantsButton" ]
+  [ class "homeUserPlantsButton"]
+  [ class "homeAboutButton"]
+
+[ class "allPlantsScreenBody" ]
+  [ class "allPlantsPlantButton"] - tricky
+  [ class "allPlantsAllPlantsButton"]
+  [ class "allPlantsrPlantsButton"]
+  [ class "allPlantsAboutButton"]
+
+[ class "userPlantsScreenBody" ]
+  [ class "userPlantsPlantsButton"]
+  [ class "userPlantsPlantsButton"]
+  [ class "userPlantsAboutButton"]
+
+
+
+[ class "thePlantScreenBody" ]
+  [ class "thePlantAllPlantsButton"]
+  [ class "thePlanPlantsButton"]
+  [ class "thePlanButton"]
+
+
+[ class "AboutScreenBody" ]
+  [ class "aboutAllPlantsButton"]
+  [ class "aboutUserPlantsButton"]
+  [ class "aboutAboutButton"]
+
+
+
+===== navBar===
+
+myNav : Attribute msg
+myNav =
+    style
+        [ ( "list-style-type", " none" )
+        , ( "margin", "0" )
+        , ( "padding", "0" )
+        , ( "overflow", "hidden" )
+        , ( "background-color", "#333" )
+        , ( "position", "fixed" )
+        , ( "bottom", "0" )
+        , ( "width", " 398px" )
+        ]
+
+
+==== Basic Body===
+
+myContainer : Attribute msg
+myContainer =
+    style
+        [ ( "backgroundColor", "#98AFC7" )
+        , ( "height", "1000px" )
+        , ( "width", "400px" )
+        , ( "marginLeft", "auto" )
+        , ( "marginRight", "auto" )
+        , ( "border", "1px solid #000" )
+        , ( "boxSizing", "border-box" )
+        , ( "padding", "0px" )
+        ]
+  -}
 .test-class {
   background-color: red;
 }
