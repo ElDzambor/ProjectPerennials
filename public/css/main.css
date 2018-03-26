@@ -1,0 +1,23 @@
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0 auto;
+}
+
+html { font-size: 62.5%; }
+
+
+/* edit from here */
+
+body {
+  background-color: #eee;
+}
+
+.test-class {
+  background-color: red;
+}
+.test-class2 {
+  color: orange;
+}

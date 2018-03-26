@@ -1,0 +1,8 @@
+# Npm assets
+/node_modules
+
+# Elm assets
+/elm/elm-stuff
+
+# Output folder
+/public/js
