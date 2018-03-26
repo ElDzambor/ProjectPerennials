@@ -146,11 +146,6 @@ view : Model -> Html Msg
 view model =
     case model.route of
         SplashScreen ->
-            let
-                splash =
-                    Process.sleep (2 * second)
-                        |> (\_ -> NoOp) (\_ -> ChangeRoute Home)
-            in
             body [ myContainer ]
                 [ div
                     [ class "test-class test-class2" ]
