@@ -209,10 +209,16 @@ view model =
                             []
                             (List.map
                                 (\plant ->
-                                    button [ class "userPlantsPlantButton", onClick (ChangeRoute (ThePlant plant.id_)) ] [ text plant.name ]
+                                    div []
+                                        [ br [] []
+                                        , button [ class "userPlantsPlantButton", onClick (ChangeRoute (ThePlant plant.id_)) ] [ text plant.name ]
+                                        , br [] []
+                                        ]
                                 )
                                 userFavPlants
                             )
+                        , br [] []
+                        , br [] []
                         , ul [ class "navBar" ]
                             [ button [ class "userPlantsPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
                             , button [ class "userPlantsPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
