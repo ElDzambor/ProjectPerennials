@@ -6,6 +6,7 @@ type alias Plant =
     , id_ : Int
     , userFav : Bool
     , description : String
+    , type_ : PlantType
     , progress : ProgressYear
     }
 
@@ -38,12 +39,26 @@ type Progress
     | NotGrowing
 
 
+type PlantType
+    = Strawberry
+    | Peaches
+    | Grapes
+    | Echinacea
+    | Sage
+    | Lavender
+    | Papaver
+    | GeraniumM
+    | GeraniumH
+    | TestPlant
+
+
 plant1 : Plant
 plant1 =
     { name = "Strawberry"
     , id_ = 1
     , userFav = False
     , description = "Red and tasty"
+    , type_ = Strawberry
     , progress =
         { jan = Default
         , feb = Default
@@ -67,6 +82,7 @@ plant2 =
     , id_ = 2
     , userFav = False
     , description = "Pinkish and tasty"
+    , type_ = Peaches
     , progress =
         { jan = Default
         , feb = Default
@@ -90,6 +106,7 @@ plant3 =
     , id_ = 3
     , userFav = False
     , description = "Too many of them"
+    , type_ = Grapes
     , progress =
         { jan = Default
         , feb = Default
@@ -113,6 +130,7 @@ plant4 =
     , id_ = 4
     , userFav = False
     , description = "Flowery weed"
+    , type_ = Echinacea
     , progress =
         { jan = Default
         , feb = Default
@@ -136,6 +154,7 @@ plant5 =
     , id_ = 5
     , userFav = False
     , description = "Just weed"
+    , type_ = Sage
     , progress =
         { jan = Default
         , feb = Default
@@ -159,6 +178,7 @@ plant6 =
     , id_ = 6
     , userFav = False
     , description = "At least smells nice"
+    , type_ = Lavender
     , progress =
         { jan = Default
         , feb = Default
@@ -182,6 +202,7 @@ plant7 =
     , id_ = 7
     , userFav = False
     , description = "Looks nice"
+    , type_ = Papaver
     , progress =
         { jan = Default
         , feb = Default
@@ -205,6 +226,7 @@ plant8 =
     , id_ = 8
     , userFav = False
     , description = "Geriatric what?!?"
+    , type_ = GeraniumM
     , progress =
         { jan = Default
         , feb = Default
@@ -228,6 +250,7 @@ plant9 =
     , id_ = 9
     , userFav = False
     , description = "That's it. We are opening care home !!!"
+    , type_ = GeraniumH
     , progress =
         { jan = Default
         , feb = Default
@@ -251,6 +274,7 @@ plantDefault =
     , id_ = 999
     , userFav = False
     , description = "Test Plant"
+    , type_ = TestPlant
     , progress =
         { jan = Default
         , feb = Default
