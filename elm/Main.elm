@@ -244,17 +244,22 @@ view model =
                 [ div []
                     [ text "User Plants Screen"
                     , br [] []
-                    , div
-                        []
+                    , div []
                         (List.map
-                            (\plant ->
+                            (\plant->
+                                let
+                                    month =
+                                        case plant.progress of
+                                          jan -> progressYear.jan
+                                in
                                 div []
                                     [ br [] []
-                                    , button [ class "userPlantsPlantButton", onClick (ChangeRoute (ThePlant plant.id_)) ] [ text plant.name ]
+                                    , text p, onClick (ChangeRoute (ThePlant plant.id_)) ]
+                                        [ text plant.name ]
                                     , br [] []
                                     ]
                             )
-                            userFavPlants
+                            model.plants
                         )
                     , br [] []
                     , br [] []
@@ -296,7 +301,20 @@ view model =
                     , text "Plant Description"
                     , br [] []
                     , text thePlant.description
+                    , div
+                        []
+                        (List.map
+                            (\plant.id_->
+                                div []
+                                    [ br [] []
+                                    , button [ class "userPlantsPlantButton", onClick (ChangeRoute (ThePlant plant.progress.jan)) ] [ text plant.progress.jan ]
+                                    , br [] []
+                                    ]
+                            )
+                            userFavPlants
+                        )
                     , br [] []
+                    , div [] []
                     , ul [ class "navBar" ]
                         [ button [ class "thePlantAllPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
                         , button [ class "thePlanPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
