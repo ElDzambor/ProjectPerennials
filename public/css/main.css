@@ -82,6 +82,124 @@ myContainer =
         , ( "padding", "0px" )
         ]
   -}
+.navBar {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0px;
+  width: 398px;
+}
+.splashScreenBody {
+  background: url("splashscreenlogo.png") no-repeat center;
+  background-size: 400px;
+  height: 650px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  padding: 0px;
+}
+.homeScreenBody {
+  background: url("splashscreenlogo.png") no-repeat top;
+  background-size: 300px;
+  background-color: #FFFFF3;
+  height: 650px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  padding: 0px;
+}
+
+{- class "homeAllPlantsButton" ]
+[ class "homeUserPlantsButton"]
+[ class "homeAboutButton"]
+-}
+.homeAllPlantsButton {
+  outline: solid 2px #009900;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 90%;
+  margin-bottom: 10%;
+  width: 80%;
+  height: 40px;
+  background-color: #b3ffb3;
+  color: #001a00;
+  font: bold 25px verdana;
+  text-transform: uppercase;
+}
+
+.homeUserPlantsButton {
+  outline: solid 2px #009900;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 10%;
+  width: 80%;
+  height: 40px;
+  background-color: #b3ffb3;
+  color: #001a00;
+  font: bold 25px verdana;
+  text-transform: uppercase;
+}
+
+.homeAboutButton {
+  outline: solid 2px #009900;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+  height: 40px;
+  background-color: #b3ffb3;
+  color: #001a00;
+  font: bold 25px verdana;
+  text-transform: uppercase;
+}
+
+.allPlantsScreenBody {
+  background-color: #98AFC7;
+  height: 1000px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  padding: 0px;
+}
+.userPlantsScreenBody {
+  background-color: #98AFC7;
+  height: 1000px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  padding: 0px;
+}
+.thePlantScreenBody {
+  background-color: #98AFC7;
+  height: 1000px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  padding: 0px;
+}
+.AboutScreenBody {
+  background-color: #98AFC7;
+  height: 1000px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  padding: 0px;
+}
+.
 .test-class {
   background-color: red;
 }
