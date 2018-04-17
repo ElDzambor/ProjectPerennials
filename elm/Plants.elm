@@ -290,3 +290,77 @@ plantDefault =
         , dec = Default
         }
     }
+
+
+staticPlantMessages =
+  {strawberry =
+      { unexpected = "Message"
+      , expected = "Other message"
+      , overgrown = "Message"
+      , default = "Message"
+      , notGrowing = "Message"
+      }
+  ,peaches =
+      { unexpected = "Message"
+      , expected = "Other message"
+      , overgrown = "Message"
+      , default = "Message"
+      , notGrowing = "Message"
+      }
+  ,grapes =
+      { unexpected = "Message"
+      , expected = "Other message"
+      , overgrown = "Message"
+      , default = "Message"
+      , notGrowing = "Message"
+      }
+  ,echinacea =
+      { unexpected = "Message"
+      , expected = "Other message"
+      , overgrown = "Message"
+      , default = "Message"
+      , notGrowing = "Message"
+      }
+  ,sage =
+      { unexpected = "Message"
+      , expected = "Other message"
+      , overgrown = "Message"
+      , default = "Message"
+      , notGrowing = "Message"
+      }
+  ,lavender =
+      { unexpected = "Message"
+      , expected = "Other message"
+      , overgrown = "Message"
+      , default = "Message"
+      , notGrowing = "Message"
+      }
+  ,papaver =
+      { unexpected = "Message"
+      , expected = "Other message"
+      , overgrown = "Message"
+      , default = "Message"
+      , notGrowing = "Message"
+      }
+  ,geraniumM =
+      { unexpected = "Message"
+      , expected = "Other message"
+      , overgrown = "Message"
+      , default = "Message"
+      , notGrowing = "Message"
+      }
+  ,graniumH =
+      { unexpected = "Message"
+      , expected = "Other message"
+      , overgrown = "Message"
+      , default = "Message"
+      , notGrowing = "Message"
+      }
+  ,testPlant =
+      { unexpected = "Message"
+      , expected = "Other message"
+      , overgrown = "Message"
+      , default = "Message"
+      , notGrowing = "Message"
+      }
+   }
