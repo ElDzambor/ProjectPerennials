@@ -4,21 +4,16 @@ import Css exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
+import Model exposing (..)
+import Msg exposing (..)
 import Plants exposing (..)
 import Process exposing (sleep)
 import Time exposing (Time, second)
 import Time.DateTime as DateTime
+import View.Helpers exposing (..)
 
 
 -- MODEL
-
-
-type alias Model =
-    { route : Route
-    , chosenPlant : Plant
-    , plants : List Plant
-    , date : Int
-    }
 
 
 type alias TimeNow =
@@ -32,24 +27,6 @@ model =
     , plants = [ plant1, plant2, plant3, plant4, plant5, plant6, plant7, plant8, plant9 ]
     , date = 0
     }
-
-
-type Route
-    = SplashScreen
-    | Home
-    | AllPlants
-    | UserPlants
-    | ThePlant Int
-    | About
-
-
-type Msg
-    = NoOp
-    | ChangeRoute Route
-    | ChangePlant Plant
-    | AddToUserPlant Int
-    | RemoveFromUserPlant Int
-    | Tick Time
 
 
 
@@ -132,6 +109,9 @@ update msg model =
                 -- Int
             in
             ( { model | date = newMonth }, Cmd.none )
+
+        PlantMessaeges ->
+            model ! []
 
 
 
@@ -242,17 +222,16 @@ view model =
             in
             body [ class "userPlantsScreenBody" ]
                 [ div []
-                    [ text "User Plants Screen"]
-                    , br [] []
-                    , br [] []
-                    , br [] []
-                    , ul [ class "navBar" ]
-                        [ button [ class "userPlantsPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
-                        , button [ class "userPlantsPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
-                        , button [ class "userPlantsAboutButton", onClick (ChangeRoute About) ] [ text "About" ]
-                        ]
-              ]
-
+                    [ text "User Plants Screen" ]
+                , br [] []
+                , br [] []
+                , br [] []
+                , ul [ class "navBar" ]
+                    [ button [ class "userPlantsPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
+                    , button [ class "userPlantsPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
+                    , button [ class "userPlantsAboutButton", onClick (ChangeRoute About) ] [ text "About" ]
+                    ]
+                ]
 
         ThePlant plantId ->
             let
@@ -274,80 +253,8 @@ view model =
             in
             body [ class "thePlantScreenBody" ]
                 [ div []
-                    [ text "The Plant"
-                    , br [] []
-                    , br [] []
-                    , text thePlant.name
-                    , addRemoveButton
-                    , br [] []
-                    , br [] []
-                    , text "Plant Description"
-                    , br [] []
-                    , text thePlant.description
-
-                    , br [] []
-                    , div []
-                      [let
-                        viewMonth month plantType =
-                           case month of
-                            Unexpected ->
-                                    case plantType of
-                                        Strawberry -> div [] [ text staticPlantMessages.strawberry.unexpected ]
-                                        Peaches -> div [] [ text staticPlantMessages.peaches.unexpected ]
-                                        Grapes-> div [] [ text staticPlantMessages.grapes.unexpected ]
-                                        Echinacea -> div [] [ text staticPlantMessages.echinacea.unexpected ]
-                                        Sage -> div [] [ text staticPlantMessages.sage.unexpected ]
-                                        Lavender -> div [] [ text staticPlantMessages.lavender.unexpected ]
-                                        Papaver -> div [] [ text staticPlantMessages.papaver.unexpected ]
-                                        GeraniumM -> div [] [ text staticPlantMessages.geraniumM.unexpected ]
-                                        GeraniumH -> div [] [ text staticPlantMessages.geraniumH.unexpected ]
-                                        TestPlant -> div [] [ text staticPlantMessages.testPlant.unexpected ]
-
-                            Expected ->
-                              case plantType of
-                                  Strawberry -> div [] [ text staticPlantMessages.strawberry.expected ]
-                                  Peaches -> div [] [ text staticPlantMessages.peaches.expected ]
-                                  Grapes-> div [] [ text staticPlantMessages.grapes.expected ]
-                                  Echinacea -> div [] [ text staticPlantMessages.echinacea.expected ]
-                                  Sage -> div [] [ text staticPlantMessages.sage.expected ]
-                                  Lavender -> div [] [ text staticPlantMessages.lavender.expected ]
-                                  Papaver -> div [] [ text staticPlantMessages.papaver.expected ]
-                                  GeraniumM -> div [] [ text staticPlantMessages.geraniumM.expected ]
-                                  GeraniumH -> div [] [ text staticPlantMessages.geraniumH.expected ]
-                                  TestPlant -> div [] [ text staticPlantMessages.testPlant.expected ]
-
-                            Overgrown ->
-                                 case plantType of
-                                    Strawberry -> div [] [ text staticPlantMessages.strawberry.overgrown ]
-                                    Peaches -> div [] [ text staticPlantMessages.peaches.overgrown ]
-                                    Grapes-> div [] [ text staticPlantMessages.grapes.overgrown ]
-                                    Echinacea -> div [] [ text staticPlantMessages.echinacea.overgrown ]
-                                    Sage -> div [] [ text staticPlantMessages.sage.overgrown ]
-                                    Lavender -> div [] [ text staticPlantMessages.lavender.overgrown ]
-                                    Papaver -> div [] [ text staticPlantMessages.papaver.overgrown ]
-                                    GeraniumM -> div [] [ text staticPlantMessages.geraniumM.overgrown ]
-                                    GeraniumH -> div [] [ text staticPlantMessages.geraniumH.overgrown ]
-                                    TestPlant -> div [] [ text staticPlantMessages.testPlant.overgrown ]
-
-                            NotGrowing ->
-                                  case plantType of
-                                    Strawberry -> div [] [ text staticPlantMessages.strawberry.notGrowing ]
-                                    Peaches -> div [] [ text staticPlantMessages.peaches.notGrowing ]
-                                    Grapes-> div [] [ text staticPlantMessages.grapes.notGrowing ]
-                                    Echinacea -> div [] [ text staticPlantMessages.echinacea.notGrowing ]
-                                    Sage -> div [] [ text staticPlantMessages.sage.notGrowing ]
-                                    Lavender -> div [] [ text staticPlantMessages.lavender.notGrowing ]
-                                    Papaver -> div [] [ text staticPlantMessages.papaver.notGrowing ]
-                                    GeraniumM -> div [] [ text staticPlantMessages.geraniumM.notGrowing ]
-                                    GeraniumH -> div [] [ text staticPlantMessages.geraniumH.notGrowing ]
-                                    TestPlant -> div [] [ text staticPlantMessages.testPlant.notGrowing ]
-
-
-
-
-                        months = [plant.progress.jan, plant.progress.feb, plant.progress.mar, plant.progress.apr, plant.progress.may, plant.progress.jun, plant.progress.jul, plant.progress.aug, plant.progress.sep, plant.progress.oct, plant.progress.nov, plant.progress.dec ]
-                           in
-                            List.map (\m -> viewMonth m) months]
+                    [ br [] []
+                    , div [] (viewMonths thePlant)
                     , div [] []
                     , ul [ class "navBar" ]
                         [ button [ class "thePlantAllPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
