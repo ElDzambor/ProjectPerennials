@@ -78,7 +78,7 @@ update msg model =
                         )
                         model.plants
             in
-            ( { model | plants = newPlants }, Cmd.none )
+                ( { model | plants = newPlants }, Cmd.none )
 
         RemoveFromUserPlant plantId ->
             let
@@ -92,7 +92,7 @@ update msg model =
                         )
                         model.plants
             in
-            ( { model | plants = newPlants }, Cmd.none )
+                ( { model | plants = newPlants }, Cmd.none )
 
         -- TimeNow date ->
         --     ( model, Cmd.none )
@@ -108,7 +108,7 @@ update msg model =
 
                 -- Int
             in
-            ( { model | date = newMonth }, Cmd.none )
+                ( { model | date = newMonth }, Cmd.none )
 
         PlantMessaeges ->
             model ! []
@@ -131,7 +131,8 @@ view model =
                     [ text "Splash Screen"
                     , br [] []
                     , button [ onClick (ChangeRoute Home) ] [ text "here I want 2s dalay and auto go Home" ]
-                    , button [] [ text (toString model.date) ]
+
+                    --, button [] [ text (toString model.date) ]
                     ]
                 ]
 
@@ -196,12 +197,12 @@ view model =
                                     allPlantsClassesButton =
                                         otherClasses ++ " " ++ imgPlantClass
                                 in
-                                div []
-                                    [ br [] []
-                                    , button [ class allPlantsClassesButton, onClick (ChangeRoute (ThePlant plant.id_)) ]
-                                        [ text plant.name ]
-                                    , br [] []
-                                    ]
+                                    div []
+                                        [ br [] []
+                                        , button [ class allPlantsClassesButton, onClick (ChangeRoute (ThePlant plant.id_)) ]
+                                            [ text plant.name ]
+                                        , br [] []
+                                        ]
                             )
                             model.plants
                         )
@@ -220,18 +221,18 @@ view model =
                 userFavPlants =
                     List.filter (\plant -> plant.userFav) model.plants
             in
-            body [ class "userPlantsScreenBody" ]
-                [ div []
-                    [ text "User Plants Screen" ]
-                , br [] []
-                , br [] []
-                , br [] []
-                , ul [ class "navBar" ]
-                    [ button [ class "userPlantsPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
-                    , button [ class "userPlantsPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
-                    , button [ class "userPlantsAboutButton", onClick (ChangeRoute About) ] [ text "About" ]
+                body [ class "userPlantsScreenBody" ]
+                    [ div []
+                        [ text "User Plants Screen" ]
+                    , br [] []
+                    , br [] []
+                    , br [] []
+                    , ul [ class "navBar" ]
+                        [ button [ class "userPlantsPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
+                        , button [ class "userPlantsPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
+                        , button [ class "userPlantsAboutButton", onClick (ChangeRoute About) ] [ text "About" ]
+                        ]
                     ]
-                ]
 
         ThePlant plantId ->
             let
@@ -251,18 +252,22 @@ view model =
                             -- onClick check if its in User plants
                             button [ onClick (AddToUserPlant thePlant.id_) ] [ text "Add To User Plants" ]
             in
-            body [ class "thePlantScreenBody" ]
-                [ div []
-                    [ br [] []
-                    , div [] (viewMonths thePlant)
-                    , div [] []
-                    , ul [ class "navBar" ]
-                        [ button [ class "thePlantAllPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
-                        , button [ class "thePlanPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
-                        , button [ class "thePlanButton", onClick (ChangeRoute About) ] [ text "About" ]
+                body [ class "thePlantScreenBody" ]
+                    [ div []
+                        [ text "The Plant"
+                        , br [] []
+                        , br [] []
+                        , text thePlant.name
+                        , addRemoveButton
+                        , div [] (viewMonths thePlant)
+                        , div [] []
+                        , ul [ class "navBar" ]
+                            [ button [ class "thePlantAllPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
+                            , button [ class "thePlanPlantsButton", onClick (ChangeRoute UserPlants) ] [ text "User Plants" ]
+                            , button [ class "thePlanButton", onClick (ChangeRoute About) ] [ text "About" ]
+                            ]
                         ]
                     ]
-                ]
 
         About ->
             body [ class "AboutScreenBody" ]
