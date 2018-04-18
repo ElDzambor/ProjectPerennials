@@ -225,7 +225,18 @@ view model =
                     [ div []
                         [ text "User Plants Screen" ]
                     , br [] []
-                    , br [] []
+                    , div
+                        []
+                        (List.map
+                            (\plant ->
+                                div []
+                                    [ br [] []
+                                    , button [ class "userPlantsPlantButton", onClick (ChangeRoute (ThePlant plant.id_)) ] [ text plant.name ]
+                                    , br [] []
+                                    ]
+                            )
+                            userFavPlants
+                        )
                     , br [] []
                     , ul [ class "navBar" ]
                         [ button [ class "userPlantsPlantsButton", onClick (ChangeRoute AllPlants) ] [ text "All Plants" ]
